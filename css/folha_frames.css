@@ -116,3 +116,9 @@ div#paginas{
 div#paginasVencimentos{
     margin-top: 120px;
 }
+
+table tr td button#btnacao{
+   padding: 0px;
+   border: none;
+   margin: 2px;
+}

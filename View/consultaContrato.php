@@ -69,7 +69,7 @@ and open the template in the editor.
                         <th>Ações</th>
                         <th>Nome fornecedor</th>
                         <th>Unidade</th>
-                        <th>Numero Contrato</th>
+                        <th>    Contrato</th>
                         <th>Valor</th>
                     </tr>
                 </thead>
@@ -88,26 +88,26 @@ and open the template in the editor.
                             foreach ($resultado as $value) {
                                 ?>
                                 <tr id="contrato"   >
-                                    <td><button type="button" class="btn btn-outline-info"><a href="../View/cadastroContrato.php?acao=Alterar&id=<?php echo $value['idContrato'] ?>"><img
+                                    <td><button style="padding: 0px; border: none;margin: 2px;"  id="btnacao" type="button" class="btn btn-outline-info" ><a href="../View/cadastroContrato.php?acao=Alterar&id=<?php echo $value['idContrato'] ?>"><img
                                                     src="../icones/edit16x16.png" style="padding: 0%; margin: 0%"></a>
                                         </button>
-                                        <button type="button" class="btn btn-outline-info" id="btnVisualizar" data-toggle="modal"
+                                        <button style="padding: 0px; border: none; margin: 2px;"  id="btnacao" type="button" class="btn btn-outline-info" id="btnVisualizar" data-toggle="modal"
                                                 data-target="#detalhe<?php echo $value["idContrato"]; ?>"> <img
                                                 src="../icones/detalhe16x16.png" alt="">
                                         </button>
-                                        <button type="button" class="btn btn-outline-info">
+                                        <button style="padding: 0px; border: none;margin: 2px;"  id="btnacao" type="button" class="btn btn-outline-info">
                                             <a href="../php/visualizaArquivo.php?file= <?php echo $value['urlArquivo']; ?>" target="_blank">
                                                 <img src="../icones/visualizar16x16.png" alt=""></a>
                                         </button>
-                                        <button type="button" class="btn btn-outline-info" disabled=""><a href="#"><img
+                                        <button style="padding: 0px; border: none;margin: 2px;" id="btnacao" type="button" class="btn btn-outline-info" disabled=""><a href="#"><img
                                                     src="../icones/deletar16x16.png" style="padding: 0%; margin: 0%"></a>
                                         </button>
 
                                     </td>
-                                    <td><?php echo $value["nomeEmpresarial"]; ?></td>
-                                    <td><?php echo $value["unidade"]; ?></td>
-                                    <td><?php echo $value["Contrato"]; ?></td>
-                                    <td><?php echo 'R$ ' . number_format($value["valor"], 2, ',', '.'); ?></td>
+                                    <td style="font-size: 10pt;"><?php echo $value["nomeEmpresarial"]; ?></td>
+                                    <td style="font-size: 10pt;"><?php echo $value["unidade"]; ?></td>
+                                    <td style="font-size: 10pt;"><?php echo $value["Contrato"]; ?></td>
+                                    <td style="font-size: 10pt;"><?php echo 'R$ ' . number_format($value["valor"], 2, ',', '.'); ?></td>
 
                                 </tr>
 

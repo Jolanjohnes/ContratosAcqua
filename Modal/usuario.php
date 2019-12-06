@@ -12,42 +12,51 @@
  * @author Jolanjohnes
  */
 class usuario {
-   private $nome;
-   private $usuario;
-   private $senha;
-   private $perfil;
-   function getNome() {
-       return $this->nome;
-   }
 
-   function getUsuario() {
-       return $this->usuario;
-   }
+    private $idUsuario;
+    private $nome;
+    private $usuario;
+    private $senha;
+    private $perfil;
 
-   function getSenha() {
-       return $this->senha;
-   }
+    function getNome() {
+        return $this->nome;
+    }
 
-   function getPerfil() {
-       return $this->perfil;
-   }
+    function getUsuario() {
+        return $this->usuario;
+    }
 
-   function setNome($nome) {
-       $this->nome = $nome;
-   }
+    function getSenha() {
+        return $this->senha;
+    }
 
-   function setUsuario($usuario) {
-       $this->usuario = $usuario;
-   }
+    function getPerfil() {
+        return $this->perfil;
+    }
 
-   function setSenha($senha) {
-       $this->senha = $senha;
-   }
+    function setNome($nome) {
+        $this->nome = $nome;
+    }
 
-   function setPerfil($perfil) {
-       $this->perfil = $perfil;
-   }
+    function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
 
+    function setSenha($senha) {
+        $this->senha = $senha;
+    }
+
+    function setPerfil($perfil) {
+        $this->perfil = $perfil;
+    }
+
+    function getIdUsuario() {
+        return $this->idUsuario;
+    }
+
+    function setIdUsuario($idUsuario) {
+        $this->idUsuario = $idUsuario;
+    }
 
 }
-

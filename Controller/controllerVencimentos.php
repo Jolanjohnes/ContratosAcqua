@@ -35,7 +35,7 @@ class controllerVencimentos {
                 if (count($arrayEvento) > 0) {
                   //  echo date('Y-m-d', strtotime("+90 day"))."<br />";
                     foreach ($arrayEvento as $value1) {
-                        if ($value1['datafim'] < date('Y-m-d', strtotime("+90 day"))) {
+                        if ($value1['datafim'] < date('Y-m-d', strtotime("+90 day")) && $value1['fk_idEvento'] != 4) {
                             //print_r($arrayEvento);//
                             array_push($arrayContratoVenc, array('unidade' => $value1['unidade'],
                                 'contrato' => $value1['contrato'],

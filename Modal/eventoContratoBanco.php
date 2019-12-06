@@ -130,7 +130,7 @@ class eventoContratoBanco {
 
     public function listarEventosVencidos($codigoContrato) {
         try {
-            $stmt = $this->pdo->prepare("SELECT cad_unidade.nome as unidade, concat(numeroContrato,'/',anoContrato) as contrato, nomeEmpresarial, datafim
+            $stmt = $this->pdo->prepare("SELECT cad_unidade.nome as unidade, concat(numeroContrato,'/',anoContrato) as contrato, nomeEmpresarial, datafim, fk_idEvento
                                         FROM eventoscontratos
                                         inner join cad_contrato on cad_contrato.idContrato = eventoscontratos.fk_idContrato
                                         inner join cad_unidade on cad_unidade.idUnidade = cad_contrato.fk_idUnidade

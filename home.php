@@ -35,9 +35,13 @@ and open the template in the editor.
                 margin: 0px;
                 background: #f1f1f1;
             }
+            html, body, iframe {
+                width: 100%;
+                height: 640px;
+            }
             img{
                 margin-left: 75px;
-                
+
             }
 
             nav{
@@ -85,19 +89,18 @@ and open the template in the editor.
                 color: white;
             }
             ul li:hover ul li a:hover{
-                background: #222; border-left: 4px solid #900; 
+                background: #222;
+                border-left: 4px solid #900; 
             }
 
 
-            html, body, iframe {
-                width: 100%;
-                height: 640px;
-            }
             div#menuLateral{
 
                 background: #002D69;
                 padding: 0;
                 margin: 0px;
+                height: 650px;
+
             }
             div#conteudo{
                 padding: 0;
@@ -107,12 +110,12 @@ and open the template in the editor.
             }
             p{
                 margin-left: 40px;
-                
+
                 color: white;
                 font-size: 16px;
             }
 
-
+            
 
         </style>
     </head>
@@ -120,9 +123,8 @@ and open the template in the editor.
         <div class="container-fluid">
             <div class="row">
                 <div id="menuLateral" class="col-3">
-
                     <img src="icones/logoprincipal.png"/>
-                    <p><?php echo "Usuário: " . $_SESSION['usuario']; ?></p>
+                    <p><?php echo "Usuário: " . $_SESSION['nomeUsuario']; ?></p>
                     <nav class="menu">
                         <ul>
                             <li><a href="">Home</a></li>
@@ -141,12 +143,13 @@ and open the template in the editor.
                                     <li><a href="./View/consultaContrato.php" target="conteudo">Consulta Contrato</a></li>
                                 </ul>   
                             </li>
+                            <li><a href="./View/alterarSenha.php" target="conteudo">Alterar Senha</a></li>
                             <li><a href="?deslogar">Sair</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div id="conteudo" class="col-9">   
-                    <iframe id="janela" name="conteudo" src="./View/listaVencimentos.php"></iframe>
+                    <iframe style="width: 100%; height: 100%" id="janela" name="conteudo" src="./View/listaVencimentos.php"></iframe>
                 </div>
             </div>
         </div>

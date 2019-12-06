@@ -51,7 +51,10 @@ and open the template in the editor.
             
             if(count($arrayUsuario) == 1){
                 foreach ($arrayUsuario as $value) {
-                   $_SESSION['usuario']  = $value['nome'];
+                   $_SESSION['nomeUsuario']  = $value['nome'];
+                   $_SESSION['idUsuario'] = $value['idUsuario'];
+                   $_SESSION['usuario'] = $value['usuario'];
+                   
                    header("Location: home.php");
                 }
             }else{
