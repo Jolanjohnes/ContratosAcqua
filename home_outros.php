@@ -25,6 +25,10 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
         <style>
             *{
                 margin: 0px;
@@ -35,19 +39,14 @@ and open the template in the editor.
                 margin: 0px;
                 background: #f1f1f1;
             }
-            html, body, iframe {
-                width: 100%;
-                height: 640px;
-            }
+
             img{
-                margin-left: 75px;
+                margin-left: 20%;
 
             }
-
             nav{
-                margin-left: 40px;
+                margin-left: 10%;
             }
-
             ul{
                 margin: 0px;
                 padding: 0px;
@@ -92,20 +91,22 @@ and open the template in the editor.
                 background: #222;
                 border-left: 4px solid #900; 
             }
-
-
             div#menuLateral{
-
                 background: #002D69;
                 padding: 0;
-                margin: 0px;
-                height: 650px;
-
+                height: 100%;
+                position: fixed;
+                height: 100%;
+                display: inline-block;
             }
+
             div#conteudo{
                 padding: 0;
                 background: #ccc;
-                margin: 0px;
+                margin-left: 25%;
+                height: 100%;
+                position: fixed;
+                display: inline-block;
 
             }
             p{
@@ -114,9 +115,15 @@ and open the template in the editor.
                 color: white;
                 font-size: 16px;
             }
-
-            
-
+            span{
+                margin-left: 5px;
+                margin-right: 15px;
+            }
+            button{
+                background: transparent;
+                outline: none;
+                border: none;
+            }
         </style>
     </head>
     <body>
@@ -124,31 +131,33 @@ and open the template in the editor.
             <div class="row">
                 <div id="menuLateral" class="col-3">
                     <img src="icones/logoprincipal.png"/>
-                    <p><?php echo "Usuário: " . $_SESSION['nomeUsuario']; ?></p>
+                    <p><span style="margin-left: 15px;" class="glyphicon glyphicon-user"></span><?php echo $_SESSION['nomeUsuario']; ?></p>
                     <nav class="menu">
                         <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a>Cadastro</a>
+                            <li><a href=""><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                            <!--
+                            <li><a><span class="glyphicon glyphicon-collapse-down"></span>Cadastro</a>
                                 <ul >
-                                    <li><a href="./View/cadastroFornecedor.php?acao=Cadastrar&id=0" target="conteudo">Cadastro Fornecedor</a></li>
-                                    <li><a href="./View/cadastroUnidade.php?acao=Cadastrar&id=0" target="conteudo">Cadastro Unidade</a></li>
-                                    <li><a href="./View/cadastroContrato.php?acao=Cadastrar&id=0" target="conteudo">Cadastro Contrato</a></li>
-                                    <li><a href="./View/cadastroEventoContrato.php?acao=Cadastrar&id=0" target="conteudo">Cadastro Eventos</a></li>
+                                    <li><a href="./View/cadastroFornecedor.php?acao=Cadastrar&id=0" target="conteudo"><span class="glyphicon glyphicon-plus-sign"></span>Cadastro Fornecedor</a></li>
+                                    <li><a href="./View/cadastroUnidade.php?acao=Cadastrar&id=0" target="conteudo"><span class="glyphicon glyphicon-plus-sign"></span>Cadastro Unidade</a></li>
+                                    <li><a href="./View/cadastroContrato.php?acao=Cadastrar&id=0" target="conteudo"><span class="glyphicon glyphicon-plus-sign"></span>Cadastro Contrato</a></li>
+                                    <li><a href="./View/cadastroEventoContrato.php?acao=Cadastrar&id=0" target="conteudo"><span class="glyphicon glyphicon-plus-sign"></span>Cadastro Eventos</a></li>
                                 </ul> 
                             </li>
-                            <li><a>Consulta</a>
+                            -->
+                            <li><a><span class="glyphicon glyphicon-search"></span>Consulta</a>
                                 <ul>
-                                    <li><a href="./View/consultaFornecedor.php" target="conteudo">Consulta Fornecedor</a></li>
-                                    <li><a href="./View/consultaUnidade.php" target="conteudo">Consulta Unidade</a></li>
-                                    <li><a href="./View/consultaContrato.php" target="conteudo">Consulta Contrato</a></li>
+                                    <li><a href="./View/consultaFornecedor.php" target="conteudo"><span class="glyphicon glyphicon-search"></span>Consulta Fornecedor</a></li>
+                                    <li><a href="./View/consultaUnidade.php" target="conteudo"><span class="glyphicon glyphicon-search"></span>Consulta Unidade</a></li>
+                                    <li><a href="./View/consultaContrato.php" target="conteudo"><span class="glyphicon glyphicon-search"></span>Consulta Contrato</a></li>
                                 </ul>   
                             </li>
-                            <li><a href="./View/alterarSenha.php" target="conteudo">Alterar Senha</a></li>
-                            <li><a href="?deslogar">Sair</a></li>
+                            <li><a href="./View/alterarSenha.php" target="conteudo"><span class="glyphicon glyphicon-wrench"></span>Alterar Senha</a></li>
+                            <li><a href="?deslogar"><span class="glyphicon glyphicon-remove-sign"></span>Sair</a></li>
                         </ul>
                     </nav>
                 </div>
-                <div id="conteudo" class="col-9">   
+                <div id="conteudo" class="col-xs-9">   
                     <iframe style="width: 100%; height: 100%" id="janela" name="conteudo" src="./View/listaVencimentos.php"></iframe>
                 </div>
             </div>

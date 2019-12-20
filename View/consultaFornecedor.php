@@ -67,8 +67,6 @@ and open the template in the editor.
 
         </div>
     
-        
-
         <?php
         // put your code here
         ?>

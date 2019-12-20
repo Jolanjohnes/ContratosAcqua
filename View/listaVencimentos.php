@@ -29,8 +29,8 @@ and open the template in the editor.
         </header>  
 
         <div id="paginasVencimentos">
-            <table class="table table-sm">
-                <thead>
+            <table id="tabelaVencimentos" class="table table-sm">
+                <thead class="">
                 <th>Unidade</th>
                 <th>Contrato</th>
                 <th>Fornecedor</th>

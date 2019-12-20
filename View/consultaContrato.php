@@ -38,16 +38,31 @@ and open the template in the editor.
 
         <div id="paginas">
             <form method="POST" action="" class="needs-validation" novalidate>
+                           <!-- informa a parceiria -->
+                    <div class="form-group">
+                        <label id="seleciona">Parceiria</label>
+                        <select class="form-control" name="parceiria" id="selecao" disabled="">
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- informa o projeto -->
+                    <div class="form-group">
+                        <label id="seleciona">Projeto</label>
+                        <select class="form-control" name="projeto" id="selecao" disabled>
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+
+                                   
                 <div class="form-group">
-                    <label>Unidade</label>
-                    <select class="form-control" name="nomeUnidade">
+                    <label id="seleciona">Centro de Custo</label>
+                    <select id="selecao" class="form-control" name="nomeUnidade">
                         <option value="0">Selecione a unidade</option>
                     </select>
                 </div>
                 <div class="form-group" id="">
-                    <label id="lbFornecedor">Cnpj Fornecedor:</label>
-
-
+                    <label id="seleciona">Cnpj Fornecedor:</label>
                     <input type="text" class="form-control" id="cnpjContrato" placeholder="00.000.000/0000-00"
                            name="cnpjContrato" onfocus="" required="requided">
                     <input type="hidden" id="codigoFornecedor" name="codigoFornecedor">
@@ -56,8 +71,8 @@ and open the template in the editor.
                 <script type="text/javascript">
                     $("#telefone, #cnpjContrato").mask("00.000.000/0000-00");
                 </script>
-                <button type="submit" name="btnBuscar" class="btn btn-primary" style="width: 100px;">Filtar <img
-                        src="_imagens/filter16x16.png" alt=""></button>
+                
+                <button type="submit" name="btnBuscar" class="btn btn-primary" style="width: 100px;"><span class="glyphicon glyphicon-filter"></span>Filtar</button>
             </form>
             <script src="../js/funcoes.js" type="text/javascript"></script>           
         </div>

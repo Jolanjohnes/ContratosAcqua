@@ -40,7 +40,8 @@ class contratosBanco {
 
     public function inserirContrato(contratos $entContratos) {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO cad_contrato (numeroContrato, anoContrato, dataInicio, dataTermino, status, Valor, objetoContrato, fk_idUnidade, fk_idFornecedor, urlArquivo) VALUES (:numeroContrato, :anoContrato, :dataInicio, :dataTermino, :status, :Valor, :objetoContrato, :fk_idUnidade, :fk_idFornecedor, :urlArquivo);");
+            $stmt = $this->pdo->prepare("INSERT INTO cad_contrato (numeroContrato, anoContrato, dataInicio, dataTermino, status, Valor, objetoContrato, fk_idUnidade, fk_idFornecedor, urlArquivo, fk_idObjeto) "
+                                        . "VALUES (:numeroContrato, :anoContrato, :dataInicio, :dataTermino, :status, :Valor, :objetoContrato, :fk_idUnidade, :fk_idFornecedor, :urlArquivo, :fk_idObjeto);");
             $param = array(
                 ":numeroContrato" => $entContratos->getNumeroContrato(),
                 ":anoContrato" => $entContratos->getAnoContrato(),
@@ -51,10 +52,12 @@ class contratosBanco {
                 ":objetoContrato" => $entContratos->getObjetoContrato(),
                 ":fk_idUnidade" => $entContratos->getIdUnidade(),
                 ":fk_idFornecedor" => $entContratos->getIdFornecedor(),
-                ":urlArquivo" => $entContratos->getUrlAquivo());
+                ":urlArquivo" => $entContratos->getUrlAquivo(),
+                ":fk_idObjeto" => $entContratos->getIdObjeto());
 
             if (!$this->verificaContrato($entContratos->getNumeroContrato(), $entContratos->getAnoContrato())) {
-                return $stmt->execute($param);
+              //   var_dump($entContratos);
+               return ($stmt->execute($param));
             }
         } catch (Exception $ex) {
             echo "ERRO 01: {$ex->getMessage()}";
@@ -65,11 +68,13 @@ class contratosBanco {
         try {
             $stmt = $this->pdo->prepare("SELECT idContrato, concat(idUnidade,'|',nome) as unidade ,
                                         cnpj_cpf, concat(idFornecedor,'|',nomeEmpresarial) fornecedor,
-                                        numeroContrato, anoContrato, dataInicio, dataTermino, valor, objetoContrato, 
+                                        numeroContrato, anoContrato, dataInicio, dataTermino, valor,
+                                        idObjeto, cad_objcontrato.descricao as DescObjeto, objetoContrato, 
                                         cad_contrato.status, cad_contrato.urlArquivo
                                         FROM contratosacqua.cad_contrato
                                         inner join cad_unidade on cad_unidade.idUnidade = cad_contrato.fk_idUnidade
-                                        inner join cad_fornecedor on cad_fornecedor.idFornecedor = cad_contrato.fk_idFornecedor where idContrato = :idContrato;");
+                                        inner join cad_fornecedor on cad_fornecedor.idFornecedor = cad_contrato.fk_idFornecedor
+                                        inner join cad_objcontrato on cad_objcontrato.idObjeto = cad_contrato.fk_idObjeto where idContrato = :idContrato;");
             $stmt->bindValue(":idContrato", $entContratos->getIdContratos());
             $stmt->execute();
             $arrayContrato = $stmt->fetchALL(PDO::FETCH_ASSOC);
@@ -110,20 +115,18 @@ class contratosBanco {
         try {
 
             if ($entContratos->getIdFornecedor() != null) {
-                
+
                 $stmt = $this->pdo->prepare("SELECT idContrato, nomeEmpresarial, nome as unidade, CONCAT(numeroContrato, '/', anoContrato) as Contrato, valor, urlArquivo FROM contratosacqua.cad_contrato
                 inner join cad_fornecedor on cad_contrato.fk_idFornecedor = cad_fornecedor.idFornecedor
                 inner join cad_unidade on cad_contrato.fk_idUnidade = cad_unidade.idUnidade 
                 where fk_idFornecedor = :fornecedor order by unidade;");
                 $stmt->bindValue(":fornecedor", $entContratos->getIdFornecedor());
-                
             } elseif ($entContratos->getIdUnidade() != null) {
                 $stmt = $this->pdo->prepare("SELECT idContrato, nomeEmpresarial, nome as unidade, CONCAT(numeroContrato, '/', anoContrato) as Contrato, valor, urlArquivo FROM contratosacqua.cad_contrato
                 inner join cad_fornecedor on cad_contrato.fk_idFornecedor = cad_fornecedor.idFornecedor
                 inner join cad_unidade on cad_contrato.fk_idUnidade = cad_unidade.idUnidade 
                 where fk_idUnidade = :unidade order by nomeEmpresarial;");
                 $stmt->bindValue(":unidade", $entContratos->getIdUnidade(), PDO::PARAM_INT);
-                
             } elseif ($entContratos->getIdFornecedor() != null && $entContratos->getIdUnidade() != null) {
                 $stmt = $this->pdo->prepare("SELECT idContrato, nomeEmpresarial, nome as unidade, CONCAT(numeroContrato, '/', anoContrato) as Contrato, valor, urlArquivo FROM contratosacqua.cad_contrato
                 inner join cad_fornecedor on cad_contrato.fk_idFornecedor = cad_fornecedor.idFornecedor
@@ -142,13 +145,12 @@ class contratosBanco {
             if ($row > 0) {
                 return $row;
             }
-            
         } catch (Exception $ex) {
-             echo "ERRO Listar: {$ex->getMessage()}";
+            echo "ERRO Listar: {$ex->getMessage()}";
         }
     }
-    
-    public function listarContratosVencidos(){
+
+    public function listarContratosVencidos() {
         try {
             $stmt = $this->pdo->prepare("SELECT idContrato, cad_unidade.nome as unidade, nomeEmpresarial,
                                         concat(numeroContrato,'/',anoContrato) as contrato, dataTermino 
@@ -159,10 +161,9 @@ class contratosBanco {
             $stmt->execute();
             $arrayContrato = $stmt->fetchALL(PDO::FETCH_ASSOC);
             return $arrayContrato;
-            
         } catch (Exception $exc) {
             echo $exc->getMessage();
         }
-        }
+    }
 
 }

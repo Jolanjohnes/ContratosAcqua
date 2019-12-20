@@ -81,6 +81,24 @@ if($_GET['acao'] == 'fornecedorCnpj'){
    }
 }
 
+if ($_GET['acao'] == 'objetoContrato'){
+    try {
+        $sql = $pdo->prepare("SELECT * FROM cad_objcontrato;");
+        $sql->execute();
+        $n = 0;
+        $retorno['qtd'] = $sql->rowCount();
+        while ($linha = $sql->fetchObject()) {
+            $retorno['descricao'][$n] = ($linha->descricao);
+            $retorno['idObjeto'][$n] = $linha->idObjeto;
+            $n++;
+        }
+    } catch (Exception $exc) {
+        echo $exc->getMessage();
+    }
+
+}
+
+
 die(json_encode($retorno));
 
 ?>

@@ -13,8 +13,7 @@ header#cabecarioPagina{
     padding: 10px;
     text-align: center;
     color: #fff;
-    margin: 0%; 
-    
+    margin: 0%;     
 }
 
 form{
@@ -35,45 +34,74 @@ div#caixaPequena{
     width: 19.5%;
     display: inline-block;
     margin-right: 0%;
-      
-}     
-div#caixaPequena input[type="checkbox"]{
-    border: 1px solid black;
-    margin-left: 20px;
 
+}    
+div#caixaPequena input[type="checkbox"]{
+    margin-left: 20px;
 }
 
 /*divs do cadastro Contrato*/
-
+input#dadosContrato{
+    font-size: 11pt; 
+    height: 35px;
+}
 input#cnpjContrato{
-	width: 200px;
-	margin-bottom: 10px;
-	display: inline-block;
+    width: 200px;
+    margin-bottom: 10px;
+    display: inline-block;
+    height: 35px;
+    font-size: 11pt;
+}
+label{
+    font-size: 11pt; 
 }
 
-label#lbFornecedor{
-	display: block;
+
+label#seleciona{
+    width: 15%;
+    display: inline-block;
+    font-size: 11pt;
+}
+
+select#selecao{
+    width: 84%;
+    display: inline-block;
+    height: 35px;
+    font-size: 11pt;
+}
+select#selecaoObj{
+    height: 35px;
+    font-size: 11pt;
+}
+
+textArea#areaDesc{
+
+    font-size: 11pt;
 }
 
 label#nomeFornecedor{
-	display: inline-block;
+    display: inline-block;
+    color: blue;
+    font-size: 11pt;
 }
-
 
 div#tabela{
     text-align: left;   
     margin-top: 20px; 
-   }
+}
 
 
 
 /*lista contratos*/
+div .form-group{
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
 div#contratos{
     width: 100%;   
     border-bottom:  solid 1px black;  
 }
-
-
 
 div#blocopopup{
     border-bottom: solid 2px rgba(20, 38, 121, 0.842);
@@ -92,6 +120,8 @@ div#descricao{
 
 button#btnCadastrar{
     display: inline-block;
+    height: 30px;
+    font-size: 10pt;
 }
 
 table#tabelaVencimentos thead{
@@ -118,7 +148,7 @@ div#paginasVencimentos{
 }
 
 table tr td button#btnacao{
-   padding: 0px;
-   border: none;
-   margin: 2px;
+    padding: 0px;
+    border: none;
+    margin: 2px;
 }

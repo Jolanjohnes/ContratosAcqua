@@ -12,6 +12,7 @@
  * @author Jolanjohnes Duarte
  */
 class contratos {
+
     //put your code here
     private $idContratos;
     private $numeroContrato;
@@ -20,11 +21,12 @@ class contratos {
     private $dataTermino;
     private $status;
     private $valor;
+    private $idObjeto;
     private $objetoContrato;
     private $idUnidade;
     private $idFornecedor;
     private $urlAquivo;
-    
+
     function getIdContratos() {
         return $this->idContratos;
     }
@@ -113,5 +115,12 @@ class contratos {
         $this->urlAquivo = $urlAquivo;
     }
 
+    function getIdObjeto() {
+        return $this->idObjeto;
+    }
+
+    function setIdObjeto($idObjeto) {
+        $this->idObjeto = $idObjeto;
+    }
 
 }

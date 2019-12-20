@@ -81,35 +81,52 @@ and open the template in the editor.
                     <input type="hidden" class="form-control" id="codigoContrato"  name="codigoContrato" value="<?= $idEvento ?>">
                 </div>
 
+                <!-- informa a parceiria -->
                 <div class="form-group">
-                    <label>Unidade:</label>
-                    <select class="form-control" name="nomeUnidade">
+                    <label id="seleciona">Parceiria</label>
+                    <select class="form-control" name="parceiria" id="selecao" disabled="">
+                        <option>Selecione</option>
+                    </select>
+                </div>
+
+                <!-- informa o projeto -->
+                <div class="form-group">
+                    <label id="seleciona">Projeto</label>
+                    <select class="form-control" name="projeto" id="selecao" disabled>
+                        <option>Selecione</option>
+                    </select>
+                </div>
+
+               
+                <div class="form-group">
+                    <label id="seleciona">Centro de Custo:</label>
+                    <select id="selecao" class="form-control" name="nomeUnidade">
                         <option value="<?= $arrayUnidade[0] . '|' . $arrayUnidade[1] ?>"><?= $nomeUnidade ?></option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Contrato:</label>
-                    <select class="form-control" name="idcontrato">
+                    <label id="seleciona">Contrato:</label>
+                    <select id="selecao" class="form-control" name="idcontrato">
                         <option value="<?= $arrayContrato[0] . '-' . $arrayContrato[1] . '-' . $arrayContrato[2] ?>"><?= $contrato ?></option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Evento Contrato:</label>
-                    <select class="form-control" name="comboEvento">
+                    <label id="seleciona">Evento Contrato:</label>
+                    <select id="selecao" class="form-control" name="comboEvento">
                         <option value="<?= $arrayEvento[0] . '|' . $arrayEvento[1] ?>"><?= $evento ?></option>
                     </select>
                 </div>
 
                 <div id="caixaPequena">
                     <label>Numero Evento:</label>
-                    <input type="number" placeholder="" class="form-control" name="numeroEvento" value="<?= $numeroContrato ?>">
+                    <input  id="dadosContrato" type="number" placeholder="" class="form-control" name="numeroEvento" value="<?= $numeroContrato ?>">
                 </div>
 
                 <div id="caixaPequena">
                     <label>Ano Evento:</label>
-                    <input type="number" class="form-control" name="anoEvento" value="<?= $anoEvento ?>">
+                    <input id="dadosContrato" type="number" class="form-control" name="anoEvento" value="<?= $anoEvento ?>">
                 </div>
 
                 <div id="caixaPequena">
@@ -119,23 +136,23 @@ and open the template in the editor.
 
                 <div id="caixaPequena">
                     <label>Data Fim:</label>
-                    <input type="date" class="form-control" name="dataFim" value="<?= $datafim ?>">
+                    <input id="dadosContrato" type="date" class="form-control" name="dataFim" value="<?= $datafim ?>">
                 </div>
 
                 <div id="caixaPequena">
                     <label>Novo Valor:</label>
-                    <input type="Number" placeholder="0,00" class="form-control" name="valorEvento" value="<?= $valor ?>">
+                    <input id="dadosContrato" type="Number" placeholder="0,00" class="form-control" name="valorEvento" value="<?= $valor ?>">
                 </div>
 
                 <div class="form-group" id="Motivo">
                     <label>Motivo</label>
-                    <textarea class="form-control" rows="1" id="" name="motivo"><?= $motivo ?></textarea>
+                    <textarea class="form-control" rows="2" id="" name="motivo"><?= $motivo ?></textarea>
                 </div>
 
                 <div id="caixaPequena" style="width: 50%;">
                     <label>Escolha um arquivo</label>
                     <input type="hidden" name="diretorioArquivo" value="<?= $urlarquivo ?>">
-                    <input type="file" class="form-control" name="arquivo" id="">
+                    <input id="dadosContrato" type="file" class="form-control" name="arquivo" id="">
                 </div>
 
                 <div class="form-group" id="caixaPequena">

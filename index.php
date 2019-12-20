@@ -1,9 +1,10 @@
 <?php
+//armazenar em buffer a saída
+ob_start();
 session_start();
 define('ROOT_PATH', dirname(__FILE__));
-require_once ROOT_PATH. "/Controller/controllerUsuario.php";
+require_once ROOT_PATH . "/Controller/controllerUsuario.php";
 $controllerUsuario = new controllerUsuario();
-
 ?>
 <!DOCTYPE html>
 <!--
@@ -16,6 +17,8 @@ and open the template in the editor.
         <title>Gerenciamento Contrato Acqua</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/folha_index.css">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+       
     </head>
     <body>
 
@@ -45,32 +48,28 @@ and open the template in the editor.
 
         <?php
         if (isset($_POST['logar'])) {
-            
+
             $arrayUsuario = $controllerUsuario->validaUsuario();
             //var_dump($arrayUsuario);
-            
-            if(count($arrayUsuario) == 1){
+
+            if (count($arrayUsuario) == 1) {
                 foreach ($arrayUsuario as $value) {
-                   $_SESSION['nomeUsuario']  = $value['nome'];
-                   $_SESSION['idUsuario'] = $value['idUsuario'];
-                   $_SESSION['usuario'] = $value['usuario'];
-                   
-                   header("Location: home.php");
+                  if($value['fk_idPerfil'] == 0){
+                        header("Location: home_admin.php");
+                    }else if($value['fk_idPerfil'] == 1){
+                        header("Location: home_cont.php"); 
+                    }else if($value['fk_idPerfil'] == 2){
+                          header("Location: home_outros.php"); 
+                    }
+                    $_SESSION['nomeUsuario'] = $value['nome'];
+                    $_SESSION['idUsuario'] = $value['idUsuario'];
+                    $_SESSION['usuario'] = $value['usuario'];
+                    $_SESSION['perfil'] = $value['fk_idPerfil'];
+                   // header("Location: home.php");
                 }
-            }else{
+            } else {
                 header("Location: index.php");
             }
-            
-            
-            
-            /*
-            if ($controllerUsuario->validaUsuario()) {
-                $_SESSION['usuario'] = "dfadsf";
-                header("Location: home.php");
-            }else{
-                echo "<script>window.alert('Erro ao se autenticar, por favor verifique seus dados');</script>";
-                header("Location: index.php");
-            }*/
         }
         ?>
     </body>

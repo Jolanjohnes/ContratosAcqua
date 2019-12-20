@@ -59,6 +59,7 @@ class controllerContratos {
         $situacao = (filter_input(INPUT_POST, 'ativo') == 'on') ? true : false;
         $idUnidade = explode("|", filter_input(INPUT_POST, 'nomeUnidade'));
         $idFornecedor = explode("|", filter_input(INPUT_POST, 'codigoFornecedor'));
+        $idObjetoContrato  = explode("|", filter_input(INPUT_POST, 'selecaoObjeto'));
 
         //atribui as variaveis da classe abastrata//
         $this->contratos->setIdUnidade($idUnidade[0]);
@@ -68,6 +69,7 @@ class controllerContratos {
         $this->contratos->setDataInicio(filter_input(INPUT_POST, 'dataInicio'));
         $this->contratos->setDataTermino(filter_input(INPUT_POST, 'dataFinal'));
         $this->contratos->setValor(filter_input(INPUT_POST, 'valor'));
+        $this->contratos->setIdObjeto($idObjetoContrato[0]);
         $this->contratos->setObjetoContrato(filter_input(INPUT_POST, 'objContrato'));
 
         $this->contratos->setStatus($situacao);
@@ -78,7 +80,7 @@ class controllerContratos {
             return $this->contratosBanco->inserirContrato($this->contratos);
         } else {
             $this->contratos->setUrlAquivo(NULL);
-            $this->contratosBanco->inserirContrato($this->contratos);
+            return  $this->contratosBanco->inserirContrato($this->contratos);
         }
     }
 

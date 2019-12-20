@@ -1,5 +1,4 @@
 <?php
-
 //VERIFICA SESSAO
 session_start();
 if (!isset($_SESSION['usuario'])) {
@@ -20,6 +19,8 @@ if (filter_input(INPUT_GET, 'acao') === 'Cadastrar' && filter_input(INPUT_GET, '
     $dataInicio = "";
     $dataFim = "";
     $valor = "";
+    $idObjetoContrato = "";
+    $descricaoObjetoContrato = "Selecione";
     $objContrato = "";
     $ativo = "";
     $urlarquivo = "";
@@ -44,6 +45,8 @@ if (filter_input(INPUT_GET, 'acao') === 'Cadastrar' && filter_input(INPUT_GET, '
         $dataInicio = $value['dataInicio'];
         $dataFim = $value['dataTermino'];
         $valor = $value['valor'];
+        $idObjetoContrato = $value['idObjeto'];
+        $descricaoObjetoContrato = $value['DescObjeto'];
         $objContrato = $value['objetoContrato'];
         $urlarquivo = $value['urlArquivo'];
     }
@@ -81,23 +84,43 @@ and open the template in the editor.
             </header>
             <div id="paginas">
                 <form method="POST" action="" class="needs-validation" enctype = "multipart/form-data">
-
+                    <!-- informa o resultado -->
                     <div class="alert alert-success" role="alert" id="resultado">
                         Cadastrado com Sucesso!!!!
                     </div>
+
+                    <!-- Guarda o codigo do Contrato -->
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="codigoContrato"  name="codigoContrato" value="<?= $idContrato ?>">
                     </div>
 
+                    <!-- informa a parceiria -->
                     <div class="form-group">
-                        <label for="selecionaUnidade">Unidade:</label>
-                        <select class="form-control" name="nomeUnidade">
+                        <label id="seleciona">Parceiria</label>
+                        <select class="form-control" name="parceiria" id="selecao" disabled="">
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+
+                    <!-- informa o projeto -->
+                    <div class="form-group">
+                        <label id="seleciona">Projeto</label>
+                        <select class="form-control" name="projeto" id="selecao" disabled>
+                            <option>Selecione</option>
+                        </select>
+                    </div>
+
+                                      <!-- informa a Unidade -->
+                    <div class="form-group">
+                        <label id="seleciona">Centro de Custo:</label>
+                        <select class="form-control" name="nomeUnidade" id="selecao">
                             <option value="<?= $idUnidade ?>"><?= $nomeUnidade ?></option>
                         </select>
                     </div>
 
+                    <!-- informa o fornecedor -->
                     <div class="form-group" id="idCnpj">
-                        <label id="lbFornecedor">Cnpj Fornecedor:</label>
+                        <label id="seleciona">Cnpj Fornecedor:</label>
                         <input type="text" class="form-control" id="cnpjContrato" placeholder="00.000.000/0000-00"
                                name="cnpjContrato" onfocus="" required="requided" value="<?= $cnpj ?>">
 
@@ -111,31 +134,31 @@ and open the template in the editor.
 
                     <div class="form-group" id="caixaPequena">
                         <label>Numero do Contrato:</label>
-                        <input type="number" class="form-control" id="numeroContrato" placeholder="Numero" name="numeroContrato"
+                        <input type="number" class="form-control" id="dadosContrato" placeholder="Numero" name="numeroContrato"
                                required value="<?= $numerContrato ?>">
                     </div>
 
                     <div class="form-group" id="caixaPequena">
                         <label for="AnoContrato">Ano do Contrato:</label>
-                        <input type="number" class="form-control" id="anoContrato" placeholder="Ano do Contrato"
+                        <input type="number" class="form-control" id="dadosContrato" placeholder="Ano do Contrato"
                                name="anoContrato" required value="<?= $anoContrato ?>">
                     </div>
 
                     <div class="form-group" id="caixaPequena">
                         <label for="dataInicio">Data do Inicio:</label>
-                        <input type="Date" class="form-control" id="dataInicio" placeholder="Data Inicio Contrato"
+                        <input type="Date" class="form-control" id="dadosContrato" placeholder="Data Inicio Contrato"
                                name="dataInicio" required value="<?= $dataInicio ?>">
                     </div>
 
                     <div class="form-group" id="caixaPequena">
                         <label for="dataFinal">Data do Termino:</label>
-                        <input type="Date" class="form-control" id="dataFinal" placeholder="Data Final Contrato"
+                        <input type="Date" class="form-control" id="dadosContrato" placeholder="Data Final Contrato"
                                name="dataFinal" required value="<?= $dataFim ?>">
                     </div>
 
                     <div class="form-group" id="caixaPequena">
                         <label>Valor:</label>
-                        <input type="text" class="form-control" id="valor" placeholder="Valor do Contrato" name="valor"
+                        <input type="text" class="form-control" id="dadosContrato" placeholder="Valor do Contrato" name="valor"
                                required value="<?= $valor ?>">
                     </div>
 
@@ -161,15 +184,22 @@ and open the template in the editor.
                     </div>
                     -->
 
+                    <div class="form-group">
+                        <label for="seleciona">Selecione o Obejto Contrato</label>
+                        <select class="form-control" name="selecaoObjeto" id="selecaoObj">
+                            <option value="<?= $idObjetoContrato ?>"><?= $descricaoObjetoContrato ?></option>
+                        </select>
+                    </div>
+
                     <div class="form-group" id="objContrato">
-                        <label>Objeto Contrato:</label>
-                        <textarea class="form-control" rows="1" id="" name="objContrato"><?= $objContrato ?></textarea>
+                        <label>Descrição sobre o contrato:</label>
+                        <textarea id="areaDesc" class="form-control" rows="2" id="" name="objContrato"><?= $objContrato ?></textarea>
                     </div>
 
                     <div id="caixaPequena" style="width: 50%;">
                         <label>Escolha um arquivo</label>
                         <input type="hidden" name="diretorioArquivo" value="<?= $urlarquivo ?>">
-                        <input type="file" class="form-control" name="arquivo" id="">
+                        <input id="dadosContrato" type="file" class="form-control" name="arquivo" id="">
                     </div>
 
                     <div class="form-group form-check" id="caixaPequena">
@@ -179,7 +209,7 @@ and open the template in the editor.
 
                     <div id="caixaPequena">
                         <button type="submit" name="btnEnviarContrato" class="btn btn-primary"
-                                id="btnCadastrar"><?= filter_input(INPUT_GET, 'acao') ?></button>
+                                id="btnCadastrar"><?= filter_input(INPUT_GET, 'acao') ?></button>                    
                     </div>
 
                 </form>
@@ -194,11 +224,11 @@ and open the template in the editor.
                 if ($controllerContrato->incluir()) {
                     ?>
                     <script type="text/javascript">
-                                    document.getElementById("resultado").innerHTML = "Cadastrado com sucesso!!!!";
-                                    document.getElementById("resultado").style.display = 'block';
-                                    setTimeout(function () {
-                                        document.getElementById("resultado").style.display = 'none';
-                                    }, 2000);
+                        document.getElementById("resultado").innerHTML = "Cadastrado com sucesso!!!!";
+                        document.getElementById("resultado").style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById("resultado").style.display = 'none';
+                        }, 2000);
                     </script>
                     <?php
                 } else {
